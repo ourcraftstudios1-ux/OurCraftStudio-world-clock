@@ -14,7 +14,7 @@ const GROUP_MEMBERS = [
     { name: 'Colin', timezone: 'Europe/London', minecraftUsername: 'Collins_plays' },
     { name: 'Ae', timezone: 'America/New_York', minecraftUsername: 'AE_just_vibing' },
     { name: 'Violet', timezone: 'America/New_York', minecraftUsername: 'VioletCloude80' },
-    { name: 'Artemis', timezone: 'America/Edmonton', minecraftUsername: 'Art3mis015' },
+    { name: 'Artemis', timezone: 'America/Chicago', minecraftUsername: 'Art3mis015' },
     { name: 'Siri', timezone: 'America/Chicago', minecraftUsername: 'MermiadSparkle' }
     // Add more members here! They will automatically group by timezone
 ];
@@ -222,6 +222,7 @@ function createMinecraftHead(username) {
     const img = document.createElement('img');
     img.alt = `${username}'s Minecraft head`;
     img.src = getMinecraftHeadURL(username, SKIN_CONFIG.size);
+    img.crossOrigin = 'anonymous';
 
     // Handle image load success
     img.addEventListener('load', () => {
@@ -233,7 +234,7 @@ function createMinecraftHead(username) {
     img.addEventListener('error', () => {
         head.classList.remove('loading');
         head.classList.add('error');
-        // You could optionally show a placeholder or default image here
+        console.warn(`Failed to load skin for username: ${username}`);
     });
 
     head.appendChild(img);
@@ -277,16 +278,16 @@ function createMemberCard(member) {
         </div>
     `;
 
-    // Add the SVG clock
-    const clockContainer = card.querySelector('.clock-container');
-    const clockSVG = createAnalogClockSVG();
-    clockContainer.appendChild(clockSVG);
-
-    // Add Minecraft skin head if username provided
+    // Add Minecraft skin head at the top if username provided
     if (member.minecraftUsername) {
         const skinHead = createMinecraftHead(member.minecraftUsername);
         card.insertBefore(skinHead, card.firstChild);
     }
+
+    // Add the SVG clock
+    const clockContainer = card.querySelector('.clock-container');
+    const clockSVG = createAnalogClockSVG();
+    clockContainer.appendChild(clockSVG);
 
     // Initial clock update
     updateAnalogClock(clockSVG, tzDate);
