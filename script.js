@@ -8,7 +8,7 @@
 // The Minecraft username will be used to fetch the player's skin head from Crafatar API
 // More timezone examples: 'America/Los_Angeles', 'Europe/Paris', 'Asia/Tokyo', 'Australia/Sydney'
 const GROUP_MEMBERS = [
-    { name: 'Jay', timezone: 'America/Denver', minecraftUsername: 'hypixel' },
+    { name: 'Jay', timezone: 'America/Denver', minecraftUsername: 'XjaylienX' },
     { name: 'Member 2', timezone: 'America/Denver', minecraftUsername: 'hypixel' },
     { name: 'Member 3', timezone: 'America/New_York', minecraftUsername: 'hypixel' },
     { name: 'Member 4', timezone: 'America/New_York', minecraftUsername: 'hypixel' },
@@ -481,7 +481,7 @@ function initializeClock() {
    - Mike
    - Lisa
    - Tom
-    `, 'color: #e8e8e8;');
+     `, 'color: #e8e8e8;');
 
     // Update header
     updateHeader();
