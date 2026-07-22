@@ -13,9 +13,9 @@ const GROUP_MEMBERS = [
     { name: 'Tara', timezone: 'Europe/Vienna', minecraftUsername: 'Tarantulophie' },
     { name: 'Colin', timezone: 'Europe/London', minecraftUsername: 'Collins_plays' },
     { name: 'Ae', timezone: 'America/New_York', minecraftUsername: 'AE_just_vibing' },
-    { name: 'Violet', timezone: 'America/New_York', minecraftUsername: 'VioletCloude80' },
-    { name: 'Artemis', timezone: 'America/Calgary', minecraftUsername: 'Art3mis015' },
-    { name: 'Siri', timezone: 'America/Chicago', minecraftUsername: 'MermiadSparkle' }
+    { name: 'Violet', timezone: 'America/New_York', minecraftUsername: 'VioletCloud80' },
+    { name: 'Artemis', timezone: 'America/Chicago', minecraftUsername: 'Art3mis015' },
+    { name: 'Siri', timezone: 'America/Chicago', minecraftUsername: 'MermiadSparkles' }
     // Add more members here! They will automatically group by timezone
 ];
 
