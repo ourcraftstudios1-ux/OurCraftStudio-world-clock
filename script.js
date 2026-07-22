@@ -14,7 +14,7 @@ const GROUP_MEMBERS = [
     { name: 'Colin', timezone: 'Europe/London', minecraftUsername: 'Collins_plays' },
     { name: 'Ae', timezone: 'America/New_York', minecraftUsername: 'AE_just_vibing' },
     { name: 'Violet', timezone: 'America/New_York', minecraftUsername: 'VioletCloude80' },
-    { name: 'Artemis', timezone: 'America/Chicago', minecraftUsername: 'Art3mis015' },
+    { name: 'Artemis', timezone: 'America/Calgary', minecraftUsername: 'Art3mis015' },
     { name: 'Siri', timezone: 'America/Chicago', minecraftUsername: 'MermiadSparkle' }
     // Add more members here! They will automatically group by timezone
 ];
@@ -204,7 +204,8 @@ function getTimeInTimezone(timezone) {
 function getMinecraftHeadURL(username, size = 80) {
     // Using mc-heads.net API - CORS enabled and reliable
     // Format: https://mc-heads.net/avatar/{username}/{size}
-    return `https://mc-heads.net/avatar/${username}/${size}`;
+    const encodedUsername = encodeURIComponent(username);
+    return `https://mc-heads.net/avatar/${encodedUsername}/${size}`;
 }
 
 /**
@@ -223,11 +224,13 @@ function createMinecraftHead(username) {
     img.alt = `${username}'s Minecraft head`;
     img.src = getMinecraftHeadURL(username, SKIN_CONFIG.size);
     img.crossOrigin = 'anonymous';
+    img.loading = 'lazy';
 
     // Handle image load success
     img.addEventListener('load', () => {
         head.classList.remove('loading');
         head.classList.remove('error');
+        console.log(`✅ Loaded skin for: ${username}`);
     });
 
     // Handle image load error (invalid username or network issue)
@@ -235,6 +238,9 @@ function createMinecraftHead(username) {
         head.classList.remove('loading');
         head.classList.add('error');
         console.warn(`Failed to load skin for username: ${username}`);
+        // Try fallback API
+        console.log(`⚠️ Trying fallback for: ${username}`);
+        img.src = `https://crafatar.com/avatars/${username}?size=${SKIN_CONFIG.size}&overlay`;
     });
 
     head.appendChild(img);
@@ -341,6 +347,7 @@ function getTimezoneDisplayName(timezone) {
     const timezoneNames = {
         'America/Denver': 'USA - Mountain Time',
         'America/Edmonton': 'Canada - Mountain Time',
+        'America/Calgary': 'Canada - Mountain Standard Time',
         'America/Chicago': 'USA - Central Time',
         'America/New_York': 'USA - Eastern Time',
         'Europe/London': 'Wales - GMT',
@@ -457,6 +464,7 @@ function initializeClock() {
 📍 Timezone Examples:
    America/Denver (Mountain Time - USA)
    America/Edmonton (Mountain Time - Canada)
+   America/Calgary (Mountain Standard Time - Canada)
    America/Chicago (Central Time - USA)
    America/New_York (Eastern Time - USA)
    Europe/London (GMT - Wales)
