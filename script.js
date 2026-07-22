@@ -5,7 +5,7 @@
 
 // 📋 GROUP MEMBERS - EDIT THIS LIST TO ADD MORE MEMBERS
 // Format: { name: 'Name', timezone: 'IANA/Timezone', minecraftUsername: 'username' }
-// The Minecraft username will be used to fetch the player's skin head from Crafatar API
+// The Minecraft username will be used to fetch the player's skin head from mc-heads.net API
 // More timezone examples: 'America/Los_Angeles', 'Europe/Paris', 'Asia/Tokyo', 'Australia/Sydney'
 const GROUP_MEMBERS = [
     { name: 'Jay', timezone: 'America/Denver', minecraftUsername: 'XjaylienX' },
@@ -37,7 +37,7 @@ const COLORS = {
 // 🎮 MINECRAFT SKIN SETTINGS
 const SKIN_CONFIG = {
     size: 80,              // Size in pixels for the head render
-    api: 'crafatar'        // API to use: 'crafatar' or 'mc-heads'
+    api: 'mc-heads'        // API to use: 'mc-heads' (CORS enabled) or 'minotar'
 };
 
 /* ========================================
@@ -202,11 +202,9 @@ function getTimeInTimezone(timezone) {
  * @returns {string} - URL to the skin head image
  */
 function getMinecraftHeadURL(username, size = 80) {
-    // Using Crafatar API - free and reliable
-    // Alternative APIs:
-    // - https://mc-heads.net/avatar/{username}/{size}
-    // - https://minotar.net/avatar/{username}/{size}
-    return `https://crafatar.com/avatars/${username}?size=${size}&overlay`;
+    // Using mc-heads.net API - CORS enabled and reliable
+    // Format: https://mc-heads.net/avatar/{username}/{size}
+    return `https://mc-heads.net/avatar/${username}/${size}`;
 }
 
 /**
@@ -452,7 +450,7 @@ function initializeClock() {
 3. CHANGE TITLE: Edit HEADER_CONFIG in script.js
 
 4. MINECRAFT SKIN: Add minecraftUsername to each member
-   - Uses free Crafatar API: https://crafatar.com
+   - Uses free mc-heads.net API: https://mc-heads.net
    - Fetches player's skin head automatically
 
 📍 Timezone Examples:
