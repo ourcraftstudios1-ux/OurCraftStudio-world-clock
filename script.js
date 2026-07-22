@@ -9,12 +9,13 @@
 // More timezone examples: 'America/Los_Angeles', 'Europe/Paris', 'Asia/Tokyo', 'Australia/Sydney'
 const GROUP_MEMBERS = [
     { name: 'Jay', timezone: 'America/Denver', minecraftUsername: 'XjaylienX' },
-    { name: 'Member 2', timezone: 'America/Denver', minecraftUsername: 'hypixel' },
-    { name: 'Member 3', timezone: 'America/New_York', minecraftUsername: 'hypixel' },
-    { name: 'Member 4', timezone: 'America/New_York', minecraftUsername: 'hypixel' },
-    { name: 'Member 5', timezone: 'America/New_York', minecraftUsername: 'hypixel' },
-    { name: 'Member 6', timezone: 'America/Chicago', minecraftUsername: 'hypixel' },
-    { name: 'Member 7', timezone: 'Europe/London', minecraftUsername: 'hypixel' }
+    { name: 'Hera', timezone: 'America/Edmonton', minecraftUsername: 'Hera981170' },
+    { name: 'Tara', timezone: 'Europe/Vienna', minecraftUsername: 'Tarantulophie' },
+    { name: 'Colin', timezone: 'Europe/London', minecraftUsername: 'Collins_plays' },
+    { name: 'Ae', timezone: 'America/New_York', minecraftUsername: 'AE_just_vibing' },
+    { name: 'Violet', timezone: 'America/New_York', minecraftUsername: 'VioletCloude80' },
+    { name: 'Artemis', timezone: 'America/Edmonton', minecraftUsername: 'Art3mis015' },
+    { name: 'Siri', timezone: 'America/Chicago', minecraftUsername: 'MermiadSparkle' }
     // Add more members here! They will automatically group by timezone
 ];
 
@@ -339,11 +340,13 @@ function groupMembersByTimezone() {
  */
 function getTimezoneDisplayName(timezone) {
     const timezoneNames = {
-        'America/Denver': 'Mountain Time',
-        'America/Chicago': 'Central Time',
-        'America/New_York': 'Eastern Time',
-        'Europe/London': 'GMT / London Time',
-        'America/Los_Angeles': 'Pacific Time',
+        'America/Denver': 'USA - Mountain Time',
+        'America/Edmonton': 'Canada - Mountain Time',
+        'America/Chicago': 'USA - Central Time',
+        'America/New_York': 'USA - Eastern Time',
+        'Europe/London': 'Wales - GMT',
+        'Europe/Vienna': 'Austria - Central European Time',
+        'America/Los_Angeles': 'USA - Pacific Time',
         'Europe/Paris': 'Central European Time',
         'Asia/Tokyo': 'Japan Standard Time',
         'Australia/Sydney': 'Australian Eastern Time'
@@ -453,11 +456,13 @@ function initializeClock() {
    - Fetches player's skin head automatically
 
 📍 Timezone Examples:
-   America/Denver (Mountain Time)
-   America/Chicago (Central Time)
-   America/New_York (Eastern Time)
-   Europe/London (GMT)
-   America/Los_Angeles (Pacific Time)
+   America/Denver (Mountain Time - USA)
+   America/Edmonton (Mountain Time - Canada)
+   America/Chicago (Central Time - USA)
+   America/New_York (Eastern Time - USA)
+   Europe/London (GMT - Wales)
+   Europe/Vienna (Central European Time - Austria)
+   America/Los_Angeles (Pacific Time - USA)
    Europe/Paris, Asia/Tokyo, Australia/Sydney, etc.
 
 🎮 Minecraft Username:
@@ -473,15 +478,15 @@ function initializeClock() {
    - Tom (America/New_York)
    
    They'll automatically group as:
-   [Mountain Time]
+   [USA - Mountain Time]
    - Jay
    - Sarah
    
-   [Eastern Time]
+   [USA - Eastern Time]
    - Mike
    - Lisa
    - Tom
-     `, 'color: #e8e8e8;');
+      `, 'color: #e8e8e8;');
 
     // Update header
     updateHeader();
