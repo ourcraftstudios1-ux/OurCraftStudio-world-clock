@@ -1,0 +1,488 @@
+/* ========================================
+   CUSTOMIZABLE THEME VARIABLES
+   HermitClock/Minecraft inspired design
+   ======================================== */
+:root {
+    /* Main Color Scheme - Customize these! */
+    --primary-bg: #0a0e27;
+    --secondary-bg: #1a1f3a;
+    --card-bg: #151d34;
+    --accent-color: #ff6b35;
+    --accent-light: #ff8c42;
+    --text-primary: #e8e8e8;
+    --text-secondary: #a0a0a0;
+    --border-color: #3d4a6b;
+    --clock-border: #8b6f47;
+    
+    /* Clock specific colors */
+    --clock-bg: #0d1117;
+    --hour-hand-color: #e8e8e8;
+    --minute-hand-color: #e8e8e8;
+    --second-hand-color: #ff6b35;
+    --marker-color: #e8e8e8;
+    
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 0.75rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+}
+
+/* ========================================
+   GLOBAL STYLES
+   ======================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    padding: var(--spacing-md);
+}
+
+/* ========================================
+   CONTAINER
+   ======================================== */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ========================================
+   HEADER
+   ======================================== */
+.header {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+    padding-bottom: var(--spacing-lg);
+    border-bottom: 2px solid var(--border-color);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.logo-icon {
+    font-size: 2.5rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.15);
+        opacity: 0.8;
+    }
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+    letter-spacing: 1px;
+}
+
+.tagline {
+    color: var(--accent-color);
+    font-size: 1.1rem;
+    margin-top: var(--spacing-xs);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+/* ========================================
+   CLOCKS GRID - Main Layout
+   ======================================== */
+.clocks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--spacing-xl);
+    flex: 1;
+    margin-bottom: var(--spacing-2xl);
+    padding: var(--spacing-lg) 0;
+}
+
+/* ========================================
+   MEMBER CLOCK CARD
+   ======================================== */
+.member-clock-card {
+    background: var(--card-bg);
+    border: 3px solid var(--border-color);
+    border-radius: 12px;
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-lg);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.member-clock-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+    opacity: 0;
+}
+
+.member-clock-card:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 8px 32px rgba(255, 107, 53, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
+}
+
+/* ========================================
+   MINECRAFT SKIN HEAD
+   ======================================== */
+.skin-head-container {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    perspective: 1000px;
+}
+
+.skin-head {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: bobbing 3s ease-in-out infinite;
+}
+
+@keyframes bobbing {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+.skin-head img {
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    border: 2px solid var(--border-color);
+    border-radius: 2px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.skin-head.loading img {
+    opacity: 0.5;
+}
+
+.skin-head.error img {
+    opacity: 0.3;
+}
+
+/* Member Info Section */
+.member-info {
+    text-align: center;
+    width: 100%;
+}
+
+.member-name {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-bottom: var(--spacing-xs);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.member-timezone {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+/* ========================================
+   ANALOG CLOCK CARD
+   ======================================== */
+.clock-container {
+    width: 100%;
+    max-width: 220px;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.analog-clock {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.7));
+}
+
+.clock-face {
+    fill: var(--clock-bg);
+    stroke: var(--clock-border);
+    stroke-width: 2.5;
+}
+
+.hour-markers {
+    stroke: var(--marker-color);
+    stroke-linecap: round;
+}
+
+.major-marker {
+    stroke-width: 2;
+}
+
+.minor-marker {
+    stroke-width: 1;
+    opacity: 0.6;
+}
+
+.hour-number {
+    font-size: 14px;
+    font-weight: 600;
+    fill: var(--marker-color);
+}
+
+/* Clock Hands */
+.clock-hands {
+    transform-origin: 100px 100px;
+}
+
+.hour-hand {
+    stroke: var(--hour-hand-color);
+    stroke-width: 4;
+    stroke-linecap: round;
+}
+
+.minute-hand {
+    stroke: var(--minute-hand-color);
+    stroke-width: 3;
+    stroke-linecap: round;
+}
+
+.second-hand {
+    stroke: var(--second-hand-color);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+}
+
+.center-dot {
+    fill: var(--second-hand-color);
+}
+
+/* ========================================
+   DIGITAL TIME DISPLAY
+   ======================================== */
+.digital-display {
+    display: flex;
+    align-items: baseline;
+    gap: var(--spacing-sm);
+    background: rgba(0, 0, 0, 0.3);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    width: 100%;
+    justify-content: center;
+}
+
+.digital-time {
+    font-family: 'Courier New', 'Monaco', monospace;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--accent-color);
+    letter-spacing: 1px;
+    line-height: 1;
+}
+
+.digital-period {
+    font-family: 'Courier New', 'Monaco', monospace;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--accent-light);
+    min-width: 35px;
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+.footer {
+    text-align: center;
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-top: auto;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+@media (max-width: 1024px) {
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .clocks-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: var(--spacing-lg);
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: var(--spacing-sm);
+    }
+
+    .header {
+        margin-bottom: var(--spacing-xl);
+        padding-bottom: var(--spacing-md);
+    }
+
+    .logo {
+        gap: var(--spacing-sm);
+    }
+
+    .logo-icon {
+        font-size: 2rem;
+    }
+
+    .header h1 {
+        font-size: 1.8rem;
+    }
+
+    .tagline {
+        font-size: 0.9rem;
+    }
+
+    .clocks-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .member-clock-card {
+        padding: var(--spacing-md);
+        gap: var(--spacing-md);
+    }
+
+    .member-name {
+        font-size: 1.4rem;
+    }
+
+    .digital-time {
+        font-size: 1.6rem;
+    }
+
+    .clock-container {
+        max-width: 180px;
+    }
+
+    .skin-head-container {
+        width: 70px;
+        height: 70px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        min-height: auto;
+    }
+
+    .header h1 {
+        font-size: 1.5rem;
+    }
+
+    .logo-icon {
+        font-size: 1.8rem;
+    }
+
+    .member-clock-card {
+        padding: var(--spacing-md);
+        gap: var(--spacing-md);
+    }
+
+    .member-name {
+        font-size: 1.2rem;
+    }
+
+    .member-timezone {
+        font-size: 0.75rem;
+    }
+
+    .digital-time {
+        font-size: 1.4rem;
+    }
+
+    .clock-container {
+        max-width: 150px;
+    }
+
+    .skin-head-container {
+        width: 60px;
+        height: 60px;
+    }
+
+    .hour-number {
+        font-size: 12px;
+    }
+}
+
+/* ========================================
+   ANIMATION & EFFECTS
+   ======================================== */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.member-clock-card {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.member-clock-card:nth-child(1) { animation-delay: 0s; }
+.member-clock-card:nth-child(2) { animation-delay: 0.1s; }
+.member-clock-card:nth-child(3) { animation-delay: 0.2s; }
+.member-clock-card:nth-child(4) { animation-delay: 0.3s; }
+.member-clock-card:nth-child(5) { animation-delay: 0.4s; }
+.member-clock-card:nth-child(n+6) { animation-delay: 0.5s; }
